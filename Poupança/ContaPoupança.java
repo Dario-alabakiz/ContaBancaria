@@ -2,7 +2,7 @@ package conta.model;
 
 public class ContaPoupança extends Conta{
 	
-	public ContaPoupança(int numero, int agencia, int tipo, String titular, float saldo) {
+	public ContaPoupança(int numero, int agencia, int tipo, String titular, float saldo, float limite) {
 		super(numero, agencia, tipo, titular, saldo);
 	
 	}
