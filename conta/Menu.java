@@ -13,14 +13,15 @@ import conta.util.Cores;
 public class Menu {
 
 	public static void main(String[] args) {
-
+		
 		ContaController contas = new ContaController();
 
 		Scanner leia = new Scanner(System.in);
 		int op = 0, numero, agencia, tipo, aniversario, numeroDestino;
 		String titular;
 		float saldo = 0, limite, valor;
-
+		
+		
 		do {
 
 			System.out.println(Cores.TEXT_PURPLE + Cores.ANSI_BLACK_BACKGROUND);
@@ -49,6 +50,8 @@ public class Menu {
 				leia.nextLine();
 				op = 0;
 			}
+			
+			
 
 			switch (op) {
 			case 1:
@@ -79,12 +82,13 @@ public class Menu {
 					contas.cadastrar(new ContaPoupança(contas.gerarNumero(), agencia, tipo, titular, saldo,limite));
 				}
 				}
+				keyPress();
 				break;
 			case 2:
 				System.out.println(Cores.TEXT_YELLOW_BOLD + "Listar todas as Contas\n\n");
 				
 				contas.listarTodas();
-
+				keyPress();
 				break;
 			case 3:
 				System.out.println(Cores.TEXT_YELLOW_BOLD + "Consultar dados da Conta - por número\n\n");
@@ -93,7 +97,7 @@ public class Menu {
 				numero = leia.nextInt();
 				
 				contas.procurarPorNumero(numero);
-				
+				keyPress();
 				break;
 			case 4:
 				System.out.println(Cores.TEXT_YELLOW_BOLD + "Atualizar dados da Conta\n\n");
@@ -141,7 +145,7 @@ public class Menu {
 				numero = leia.nextInt();
 				
 				contas.deletar(numero);
-
+				keyPress();
 				break;
 			case 6:
 				System.out.println(Cores.TEXT_YELLOW_BOLD + "Saque\n\n");
@@ -154,7 +158,7 @@ public class Menu {
 					valor = leia.nextFloat();
 				}while(valor<=0);
 				contas.sacar(numero, valor);
-
+				keyPress();
 				break;
 			case 7:
 				System.out.println(Cores.TEXT_YELLOW_BOLD + "Depósito\n\n");
@@ -167,7 +171,7 @@ public class Menu {
 					valor = leia.nextFloat();
 				}while(valor<=0);
 				contas.depositar(numero, valor);
-
+				keyPress();
 				break;
 			case 8:
 				System.out.println(Cores.TEXT_YELLOW_BOLD + "Transferência entre Contas\n\n");
@@ -183,21 +187,27 @@ public class Menu {
 				}while(valor <= 0);
 				
 				contas.transferir(numero, numeroDestino, valor);
-
+				keyPress();
 				break;
 			case 0:
 
 				System.out.println(Cores.TEXT_BLUE_BOLD + "\tMuito obrigado por utilizar o nosso Banco Alabakiz :)");
 				System.out.println(Cores.TEXT_BLUE_BOLD + "\t\t    Te desejamos um bom dia :)                ");
 				System.out.println(Cores.TEXT_BLUE_BOLD + "\t\t\t  Volte sempre :)                     ");
-
+				keyPress();
 				break;
 			default:
 				System.out.println(Cores.TEXT_RED_BOLD + "\nOpção Inválida!\n");
+				keyPress();
 				break;
 			}
+			
 		} while (op != 0);
+	
 
+	}
+	
+	private static void keyPress() {
 		try {
 			System.out.println(Cores.TEXT_RESET + "\n\nPressione Enter para continuar....");
 			System.in.read();
@@ -206,5 +216,9 @@ public class Menu {
 			System.out.println("VOcê pressionou uma tecla diferente de enter!!");
 		}
 	}
+	
 
 }
+		
+	
+
